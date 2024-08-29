@@ -1,11 +1,13 @@
 <?php
 
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EmployeeController;
-use App\Http\Controllers\ShiftController;
 use App\Models\Shift;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FoodController;
+use App\Http\Controllers\TypeController;
+use App\Http\Controllers\ShiftController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Auth\LoginController;
 
 
 //* LOGIN ROUTES 
@@ -37,5 +39,22 @@ Route::middleware('admin')->group(function () {
         Route::get('/all', 'allEmployees')->name('all');
         Route::get('/{id?}', 'addOrEdit')->name('addOrEdit');
         Route::POST('/store-update{id?}', 'storeOrUpdate')->name('storeOrUpdate');
+    });
+
+
+    //* DINE MANAGEMENT
+    Route::prefix('dine/')->name('dine.')->group(function () {
+
+        //*  DINE PERIOD
+        Route::get('/add/{id?}', [TypeController::class, 'addOrStore'])->name('type.addOrEdit');
+        Route::post('/store-update/{id?}', [TypeController::class, 'addOrUpdate'])->name('type.addOrUpdate');
+        Route::get('/dine-delete/{id?}', [TypeController::class, 'delete'])->name('type.delete');
+
+        //* FOOD MANAGEMENT
+        Route::controller(FoodController::class)->prefix('food/')->name('food.')->group(function () {
+            Route::get('/{id?}',  'addOrStore')->name('addOrEdit');
+            Route::post('/store-update/{id?}',  'addOrUpdate')->name('addOrUpdate');
+            Route::get('/dine-delete/{id?}',  'delete')->name('delete');
+        });
     });
 });

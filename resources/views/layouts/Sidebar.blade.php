@@ -45,6 +45,26 @@
 
             </ul>
         </li>
+        <li class="menu-item  {{ activeLink('dine.*', true) }}">
+            <a href="javascript:void(0);" class="menu-link menu-toggle">
+                <i class="menu-icon tf-icons bx bx-home-smile"></i>
+                <div class="text-truncate" data-i18n="Dashboards">Dine Management</div>
+
+            </a>
+            <ul class="menu-sub">
+                <li class="menu-item {{ activeLink('dine.type.addOrEdit') }}">
+                    <a href="{{ route('dine.type.addOrEdit') }}" class="menu-link">
+                        <div class="text-truncate" data-i18n="Analytics">Dine Periods</div>
+                    </a>
+                </li>
+                <li class="menu-item {{ activeLink('dine.food.addOrEdit') }}">
+                    <a href="{{ route('dine.food.addOrEdit') }}" class="menu-link">
+                        <div class="text-truncate" data-i18n="Analytics">Foods</div>
+                    </a>
+                </li>
+
+            </ul>
+        </li>
 
 
     </ul>
