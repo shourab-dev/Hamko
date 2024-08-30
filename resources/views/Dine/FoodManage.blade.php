@@ -6,21 +6,50 @@
     <div class="col-lg-4">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Dine Period Management</h5>
+                <h5 class="card-title">Food</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('dine.type.addOrUpdate', $editedType?->id) }}" method="POST">
+                <form action="{{ route('dine.food.addOrUpdate', $editedFood?->id) }}" method="POST">
 
                     @csrf
-                    <input type="text" value="{{ $editedType?->name }}" class="form-control" name="name"
-                        placeholder="Ex: Lunch">
-                    @error('name')
+                    <input type="text" value="{{ $editedFood?->title }}" class="form-control" name="title"
+                        placeholder="Ex: Beef | Rice | Banana">
+                    @error('title')
                     <p class="text-danger">
                         {{ $message }}
                     </p>
                     @enderror
-                    <button class="btn btn-primary rounded-0 mt-3">{{ $editedType ? 'Edit' : 'Add' }} Dine
-                        Period</button>
+
+                    <div class="my-2">
+                        <label for="type">
+                            Dine Type
+                        </label>
+                        <select name="type" class="form-control ">
+                            @foreach ($types as $type)
+                            <option value="{{ $type->id }}">{{ $type->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="my-2">
+                        <label for="metrix">
+                            Metrix
+                        </label>
+                        <select name="metrix" class="form-control ">
+                            <option value="pcs">Piece</option>
+                            <option value="pcs">Gram</option>
+                        </select>
+                    </div>
+
+
+                    <input type="number" value="{{ $editedFood?->per_person }}" class="form-control" name="per_person"
+                        placeholder="Ex: 250g or 1 pcs ">
+                    @error('metrix')
+                    <p class="text-danger">
+                        {{ $message }}
+                    </p>
+                    @enderror
+
+                    <button class="btn btn-primary rounded-0 mt-3">{{ $editedFood ? 'Edit' : 'Add' }} Food Item</button>
 
                 </form>
             </div>
@@ -37,29 +66,30 @@
                             #
                         </th>
                         <th>
-                            Dine Period
+                            Food
                         </th>
 
-                        <th></th>
+                        <th>Dine Type</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse($types as $key=>$type)
+                    @forelse($foods as $key=>$food)
                     <tr>
                         <td>
                             {{ ++$key }}
                         </td>
                         <td>
-                            {{ $type->name }}
+                            {{ $food->title }}
                         </td>
+                        
                         <td>
-                            <span class="badge bg-primary">{{ str($type->time)->headline() }}</span>
+                            <span class="badge bg-primary">{{ str($food->dineType->name)->headline() }}</span>
                         </td>
                         <td>
                             <div class="btn-group">
-                                <a href="{{ route('dine.type.addOrEdit', $type->id) }}"
+                                <a href="{{ route('dine.food.addOrEdit', $food->id) }}"
                                     class="btn btn-primary btn-sm">Edit</a>
-                                <a href="{{ route('dine.type.delete', $type->id) }}"
+                                <a href="{{ route('dine.food.delete', $food->id) }}"
                                     class="btn btn-danger btn-sm">Delete</a>
                             </div>
                         </td>
