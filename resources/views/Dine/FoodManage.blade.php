@@ -19,6 +19,13 @@
                         {{ $message }}
                     </p>
                     @enderror
+                    <input type="number" value="{{ $editedFood?->qty }}" class="form-control my-2" name="qty"
+                        placeholder="Quantity Ex: 1pc | 250g">
+                    @error('qty')
+                    <p class="text-danger">
+                        {{ $message }}
+                    </p>
+                    @enderror
 
                     <div class="my-2">
                         <label for="type">

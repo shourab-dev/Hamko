@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('type_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->string('title');
+            $table->float('qty')->default(0);
             $table->integer('per_person');
             $table->enum('metrix', ['pcs', 'gram'])->default('pcs');
             $table->timestamps();

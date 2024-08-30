@@ -22,6 +22,7 @@ class FoodController extends Controller
     {
         $request->validate([
             'title' => 'required',
+            'qty' => 'required',
             'metrix' => 'required'
         ]);
 
@@ -29,6 +30,7 @@ class FoodController extends Controller
         $food = Food::findOrNew($id);
         $food->title = $request->title;
         $food->type_id = $request->type;
+        $food->qty = $request->qty;
         $food->metrix = $request->metrix;
         $food->per_person = $request->per_person;
         $food->save();

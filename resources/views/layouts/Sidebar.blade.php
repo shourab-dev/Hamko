@@ -25,6 +25,7 @@
                 <div class="text-truncate" data-i18n="Dashboards">Shifts</div>
             </a>
         </li>
+        {{-- EMPLOYEE MANAGEMTN --}}
         <li class="menu-item  {{ activeLink('employee.*', true) }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-home-smile"></i>
@@ -45,6 +46,7 @@
 
             </ul>
         </li>
+        {{-- DINE MANAGEMTN --}}
         <li class="menu-item  {{ activeLink('dine.*', true) }}">
             <a href="javascript:void(0);" class="menu-link menu-toggle">
                 <i class="menu-icon tf-icons bx bx-home-smile"></i>
@@ -62,10 +64,20 @@
                         <div class="text-truncate" data-i18n="Analytics">Foods</div>
                     </a>
                 </li>
+                <li class="menu-item {{ activeLink('dine.menu.addOrEdit') }}">
+                    <a href="{{ route('dine.menu.all') }}" class="menu-link">
+                        <div class="text-truncate" data-i18n="Analytics">Menu</div>
+                    </a>
+                </li>
 
             </ul>
         </li>
 
+        
+
 
     </ul>
+
+
+
 </aside>

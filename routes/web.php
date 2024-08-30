@@ -8,7 +8,7 @@ use App\Http\Controllers\ShiftController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Auth\LoginController;
-
+use App\Http\Controllers\MenuController;
 
 //* LOGIN ROUTES 
 Route::middleware('guest')->group(function () {
@@ -53,6 +53,13 @@ Route::middleware('admin')->group(function () {
         //* FOOD MANAGEMENT
         Route::controller(FoodController::class)->prefix('food/')->name('food.')->group(function () {
             Route::get('/{id?}',  'addOrStore')->name('addOrEdit');
+            Route::post('/store-update/{id?}',  'addOrUpdate')->name('addOrUpdate');
+            Route::get('/dine-delete/{id?}',  'delete')->name('delete');
+        });
+        //* FOOD MANAGEMENT
+        Route::controller(MenuController::class)->prefix('menu/')->name('menu.')->group(function () {
+            Route::get('/',  'all')->name('all');
+            Route::get('/add{id?}',  'addOrStore')->name('addOrEdit');
             Route::post('/store-update/{id?}',  'addOrUpdate')->name('addOrUpdate');
             Route::get('/dine-delete/{id?}',  'delete')->name('delete');
         });
