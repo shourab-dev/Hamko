@@ -20,47 +20,99 @@
                     </p>
                     @enderror
 
+                    <div class="row align-items-center">
 
-                    <div class="my-3">
-                        <label for="day">
-                            Select a Day
-                        </label>
-                        <select name="day" class="form-control">
-                            @php
-                            $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satday' , 'Sunday']
-                            @endphp
-                            @foreach ($days as $day)
-                                <option value="{{ $day }}">{{ str($day)->headline() }}</option>
-                            @endforeach
-                        </select>
+                        <div class="col-lg-6">
+                            <div class="my-3">
+                                <label for="day">
+                                    Select a Day
+                                </label>
+                                <select name="day" class="form-control">
+                                    @php
+                                    $days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Satday' ,
+                                    'Sunday']
+                                    @endphp
+                                    @foreach ($days as $day)
+                                    <option value="{{ $day }}">{{ str($day)->headline() }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            @error('day')
+                            <p class="text-danger">
+                                {{ $message }}
+                            </p>
+                            @enderror
+                        </div>
+                        <div class="col-lg-6">
+                            <label for="day">
+                                Food Type
+                            </label>
+                            <select name="day" class="form-control">
+
+                                @foreach ($types as $type)
+                                <option value="{{ $type->id }}">{{ str($type->name)->headline() }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
-                    @error('day')
-                    <p class="text-danger">
-                        {{ $message }}
-                    </p>
-                    @enderror
 
 
-                    <div class="my-3">
-                        <label for="featured" class="d-flex align-items-center">
-                            Featured <input type="checkbox" class="input-checkbox ms-2">
-                        </label>
+
+                    <div class="my-3 row align-items-center">
+                        <div class="col-lg-2">
+                            <label for="featured" class="d-flex align-items-center">
+                                Featured <input value="{{ true }}" id="featured" type="checkbox"
+                                    class="input-checkbox ms-2">
+                            </label>
+                        </div>
+                        <div class="featuredDate col-lg-10" style="display: none">
+                            <label for="featuredDate" class="d-block">
+                                Featured Date
+                                <input type="date" name="featured_date" id="featuredDate" class="form-control">
+                            </label>
+                        </div>
                     </div>
 
+                    <div class="my-2">
+                        <select name="" class="seachable-select" id="seachable-select"></select>
+                    </div>
 
-
-
-
-
-
-                    <button class="btn btn-primary rounded-0 mt-3">{{ $editedMenu ? 'Update ' : 'Store' }} Menu</button>
-
-                </form>
             </div>
+
+
+
+
+
+            <button class="btn btn-primary rounded-0 mt-3">{{ $editedMenu ? 'Update ' : 'Store' }} Menu</button>
+
+            </form>
+
         </div>
     </div>
+</div>
 
 </div>
 
+@push('customJs')
+<script src="{{ asset('backend/nice-select2.js') }}"></script>
+<script>
+    const featured = document.querySelector('#featured')
+    const featuredDate = document.querySelector('.featuredDate')
+            featured.addEventListener('change', (e)=>{
+                if(e.target.checked){
+                    featuredDate.style.display = 'block'
+                } else{
+                    featuredDate.style.display = 'none'
+
+                }
+                
+                
+            })
+
+
+            var options = {searchable: true, placeholder: 'select', searchtext: 'zoek', selectedtext: 'geselecteerd'};
+            NiceSelect.bind(document.getElementById("seachable-select"), options);
+</script>
+@endpush
 
 @endsection

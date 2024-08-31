@@ -13,7 +13,7 @@ class FoodController extends Controller
         $editedFood = Food::find($id) ?? null;
         $foods = Food::with('dineType')->paginate(20);
         $types  = Type::select('id', 'name')->get();
-        // dd($foods);
+        
         return view('Dine.FoodManage', compact('foods', 'editedFood', 'types'));
     }
 

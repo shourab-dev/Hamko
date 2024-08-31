@@ -34,7 +34,7 @@
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset('frontend/assets/vendor/libs/apex-charts/apex-charts.css') }}" />
-
+    <link rel="stylesheet" href="{{ asset('backend/nice-select2.css') }}">
     <!-- Page CSS -->
 
     <!-- Helpers -->
@@ -119,7 +119,7 @@
                                         <a class="dropdown-item" href="{{ route('logout') }}">
                                             <i class="bx bx-power-off bx-md me-3"></i><span>Log Out</span>
                                         </a>
-                                        
+
                                     </li>
                                 </ul>
                             </li>
@@ -173,6 +173,7 @@
 
     <!-- Place this tag before closing body tag for github widget button. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+    @stack('customJs')
 </body>
 
 </html>
