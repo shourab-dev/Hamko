@@ -10,7 +10,10 @@ class Type extends Model
     use HasFactory;
 
 
-
+    function menu()
+    {
+        return $this->hasMany(Menu::class);
+    }
     function foods()
     {
         return $this->hasMany(Food::class);

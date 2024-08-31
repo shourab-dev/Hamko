@@ -60,6 +60,7 @@ Route::middleware('admin')->group(function () {
         Route::controller(MenuController::class)->prefix('menu/')->name('menu.')->group(function () {
             Route::get('/',  'all')->name('all');
             Route::get('/add{id?}',  'addOrStore')->name('addOrEdit');
+            Route::get('/add-items',  'addItems')->name('addOrEdit');
             Route::post('/store-update/{id?}',  'addOrUpdate')->name('addOrUpdate');
             Route::get('/dine-delete/{id?}',  'delete')->name('delete');
         });

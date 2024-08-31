@@ -9,7 +9,7 @@
                 <h5 class="card-title">{{ $editedMenu ? 'Edit' : 'Add' }} Menu</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('dine.type.addOrUpdate', $editedMenu?->id) }}" method="POST">
+                <form action="{{ route('dine.menu.addOrUpdate', $editedMenu?->id) }}" method="POST">
 
                     @csrf
                     <input type="text" value="{{ $editedMenu?->name }}" class="form-control" name="title"
@@ -47,7 +47,7 @@
                             <label for="day">
                                 Food Type
                             </label>
-                            <select name="day" class="form-control">
+                            <select name="type" class="form-control">
 
                                 @foreach ($types as $type)
                                 <option value="{{ $type->id }}">{{ str($type->name)->headline() }}</option>
@@ -73,9 +73,7 @@
                         </div>
                     </div>
 
-                    <div class="my-2">
-                        <select name="" class="seachable-select" id="seachable-select"></select>
-                    </div>
+                   
 
             </div>
 
@@ -110,8 +108,8 @@
             })
 
 
-            var options = {searchable: true, placeholder: 'select', searchtext: 'zoek', selectedtext: 'geselecteerd'};
-            NiceSelect.bind(document.getElementById("seachable-select"), options);
+            // var options = {searchable: true, placeholder: 'Select Food Items', searchtext: 'zoek', selectedtext: 'geselecteerd'};
+            // NiceSelect.bind(document.getElementById("seachable-select"), options);
 </script>
 @endpush
 
